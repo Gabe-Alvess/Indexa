@@ -1,3 +1,6 @@
 <app-container>
   <app-header></app-header>
+  @for (letter of alphabet; track letter) {
+  <app-separator>{{ letter }}</app-separator>
+  }
 </app-container>
