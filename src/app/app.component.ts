@@ -6,6 +6,14 @@ import { HeaderComponent } from './components/header/header.component';
 import { SeparatorComponent } from './components/separator/separator.component';
 import { ContactComponent } from './components/contact/contact.component';
 
+interface Contact {
+  id: number;
+  name: string;
+  phone: string;
+}
+
+import phonebook from './phonebook.json';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -15,11 +23,18 @@ import { ContactComponent } from './components/contact/contact.component';
     ContainerComponent,
     HeaderComponent,
     SeparatorComponent,
-    ContactComponent
+    ContactComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  alphabet: string = 'abcdefghijklmnopqrstuvwxyz'
+  alphabet: string = 'abcdefghijklmnopqrstuvwxyz';
+  contacts: Contact[] = phonebook;
+
+  filterContactsByFirstLetter(letter: string): Contact[] {
+    return this.contacts.filter((contact) => {
+      return contact.name.toLowerCase().startsWith(letter);
+    });
+  }
 }

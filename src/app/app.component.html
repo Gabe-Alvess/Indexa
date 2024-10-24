@@ -1,7 +1,9 @@
 <app-container>
   <app-header></app-header>
   @for (letter of alphabet; track letter) {
-  <app-separator>{{ letter }}</app-separator>
-  <app-contact name="Gabriel" phone="+32 493 88 62 09"></app-contact>
+    <app-separator>{{ letter }}</app-separator>
+    @for (contact of filterContactsByFirstLetter(letter); track contact.id) {
+      <app-contact [name]="contact.name" [phone]="contact.phone"></app-contact>
+    }
   }
 </app-container>
